@@ -28,12 +28,12 @@ Job Description:
 Return a customized, ATS-friendly resume that matches the job role with improved bullet points and optimized phrasing.
 Make sure the Professional Summary section is formatted as clear, concise bullet points rather than paragraphs.
 """
-            response = openai.ChatCompletion.create(
+            response = openai.chat.completions.create(
                 model="gpt-4",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.6
             )
-            tailored_resume = response['choices'][0]['message']['content']
+            tailored_resume = response.choices[0].message.content
             st.subheader("✅ Tailored Resume")
             st.text_area("Result:", tailored_resume, height=300)
 
@@ -53,11 +53,11 @@ Job Description:
 
 Use a human tone, highlight key experiences, and keep it concise (under 300 words). Return only the letter.
 """
-            response = openai.ChatCompletion.create(
+            response = openai.chat.completions.create(
                 model="gpt-4",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.6
             )
-            cover_letter = response['choices'][0]['message']['content']
+            cover_letter = response.choices[0].message.content
             st.subheader("✅ Tailored Cover Letter")
             st.text_area("Result:", cover_letter, height=300)
